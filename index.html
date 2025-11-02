@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Campus Radio · Assignment 3</title>
+  <link rel="stylesheet" href="assets/css/base.css">
+</head>
+<body>
+  <div class="layout">
+    <header class="site-header">
+      <div class="brand">
+        <h1>Campus Radio</h1>
+        <p>Assignment 3 · Client-side Interactions</p>
+      </div>
+      <nav class="topnav">
+        <a href="index.html" class="active">Home</a>
+        <a href="dj.html">DJ</a>
+        <a href="producer.html">Producer</a>
+        <a href="manager.html">Manager</a>
+      </nav>
+      <div class="actions">
+        <button onclick="document.body.classList.toggle('light')">Toggle theme</button>
+      </div>
+    </header>
+
+    <main class="content">
+      <section class="card" id="quickstart">
+        <h2>Quick Start</h2>
+        <div class="tiles">
+          <a class="tile" href="dj.html">
+            <h3>DJ</h3>
+            <p>Queue, search, validation, modules</p>
+          </a>
+          <a class="tile" href="producer.html">
+            <h3>Producer</h3>
+            <p>Track metadata, validation, cards</p>
+          </a>
+          <a class="tile" href="manager.html">
+            <h3>Manager</h3>
+            <p>Bookings table, actions, states</p>
+          </a>
+        </div>
+      </section>
+
+      <section class="card" id="continue">
+        <h2>Continue where you left off</h2>
+        <p id="continueStatus">No recent activity yet</p>
+        <div class="actions">
+          <a id="continueLink" href="dj.ht

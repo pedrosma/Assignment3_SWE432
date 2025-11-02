@@ -1,0 +1,30 @@
+export function makeRowFromTrack(track) {
+  const tr = document.createElement('tr');
+  const tdIdx = document.createElement('td');
+  const tdLabel = document.createElement('td');
+  const tdDur = document.createElement('td');
+  const tdAct = document.createElement('td');
+  tdIdx.textContent = '';
+  tdLabel.textContent = track.label();
+  tdDur.textContent = track.mmss;
+  const up = document.createElement('button');
+  up.type = 'button';
+  up.dataset.action = 'up';
+  up.textContent = '↑';
+  const down = document.createElement('button');
+  down.type = 'button';
+  down.dataset.action = 'down';
+  down.textContent = '↓';
+  const del = document.createElement('button');
+  del.type = 'button';
+  del.dataset.action = 'del';
+  del.textContent = 'Remove';
+  tdAct.appendChild(up);
+  tdAct.appendChild(down);
+  tdAct.appendChild(del);
+  tr.appendChild(tdIdx);
+  tr.appendChild(tdLabel);
+  tr.appendChild(tdDur);
+  tr.appendChild(tdAct);
+  return tr;
+}

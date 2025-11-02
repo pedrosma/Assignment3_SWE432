@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>DJ · Campus Radio</title>
+  <link rel="stylesheet" href="assets/css/base.css">
+</head>
+<body>
+  <div class="layout">
+    <header class="site-header">
+      <div class="brand">
+        <h1>Campus Radio</h1>
+        <p>DJ</p>
+      </div>
+      <nav class="topnav">
+        <a href="index.html">Home</a>
+        <a href="dj.html" class="active">DJ</a>
+        <a href="producer.html">Producer</a>
+        <a href="manager.html">Manager</a>
+      </nav>
+      <div class="actions">
+        <button onclick="alert('DJ: inline action')">Inline onclick</button>
+        <button onclick="toggleThemeInline()">Toggle theme (inline)</button>
+      </div>
+    </header>
+
+    <main class="content">
+      <section class="card" id="select">
+        <h2>Show and Slot</h2>
+        <form>
+          <div class="row">
+            <label for="pselect">Show</label>
+            <select id="pselect">
+              <option value="">Select</option>
+              <option value="morning">Morning Show</option>
+              <option value="drive">Drive Time</option>
+              <option value="night">Night Mix</option>
+            </select>
+          </div>
+          <div class="row">
+            <label for="slot-date">Date</label>
+            <input type="date" id="slot-date">
+          </div>
+          <div class="row">
+            <label for="slot-time">Time</label>
+            <input type="time" id="slot-time" step="60">
+          </div>
+          <div class="row">
+            <button type="submit">Save selection</button>
+          </div>
+        </form>
+      </section>
+
+      <section class="card" id="quick">
+        <h2>New Track</h2>
+        <form>
+          <div class="grid">
+            <div class="row">
+              <label for="title">Title</label>
+              <input id="title" name="title" type="text" required>
+            </div>
+            <div class="row">
+              <label for="artist">Artist</label>
+              <input id="artist" name="artist" type="text">
+            </div>
+            <div class="row">
+              <label for="bpm">BPM</label>
+              <input id="bpm" name="bpm" type="number" min="0" step="1">
+            </div>
+            <div class="row">
+              <label for="duration">Duration (mm:ss)</label>
+              <input id="duration" name="duration" type="text" placeholder="03:45" required>
+            </div>
+          </div>
+          <div class="row">
+            <button type="submit">Add to queue</button>
+            <button type="reset">Reset</button>
+          </div>
+        </form>
+      </section>
+
+      <section class="card">
+        <h2>Search in Queue</h2>
+        <input id="q" type="search" placeholder="Filter by text">
+      </section>
+
+      <section class="card" id="queue">
+        <h2>Playback Queue</h2>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Track</th>
+              <th>Duration</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </section>
+
+      <section class="card">
+        <h2>Now Playing</h2>
+        <p id="nowPlaying"></p>
+      </section>
+
+      <section class="card">
+        <h2>Status</h2>
+        <p id="status" aria-live="polite"></p>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <small>Campus Radio</small>
+    </footer>
+  </div>
+
+  <script type="module" src="assets/js/dj.js"></script>
+</body>
+</html>
