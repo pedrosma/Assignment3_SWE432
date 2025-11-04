@@ -5,6 +5,47 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Campus Radio · Assignment 3</title>
   <link rel="stylesheet" href="assets/css/base.css">
+  <style>
+    .tiles {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+    }
+    .tile {
+      display: block;
+      padding: 20px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      text-align: center;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .tile:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-strong);
+    }
+    .tile h3 {
+      margin: 0 0 8px;
+      color: var(--primary);
+    }
+    .tile p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+    .btn {
+      display: inline-block;
+      padding: 10px 20px;
+      background: var(--primary);
+      color: white;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: opacity 0.2s;
+    }
+    .btn:hover {
+      opacity: 0.9;
+    }
+  </style>
 </head>
 <body>
   <div class="layout">
@@ -47,4 +88,16 @@
         <h2>Continue where you left off</h2>
         <p id="continueStatus">No recent activity yet</p>
         <div class="actions">
-          <a id="continueLink" href="dj.ht
+          <a id="continueLink" href="dj.html" class="btn">Go to last page</a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <small>Campus Radio</small>
+    </footer>
+  </div>
+
+  <script src="assets/js/index.js"></script>
+</body>
+</html>

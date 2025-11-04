@@ -50,8 +50,12 @@
 
   document.addEventListener('DOMContentLoaded', () => {
     document.documentElement.classList.add('js');
-
     updateActiveNav();
+
+    try {
+      const current = (location.pathname.split('/').pop() || 'index.html');
+      if (current.toLowerCase() !== 'index.html') saveLast(current);
+    } catch {}
 
     try {
       $$('.topnav a').forEach(a => {

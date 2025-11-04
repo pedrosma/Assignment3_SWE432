@@ -5,13 +5,52 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>DJ · Campus Radio</title>
   <link rel="stylesheet" href="assets/css/base.css">
+  <style>
+    .validation-message {
+      color: #ef4444;
+      font-size: 14px;
+      margin-top: 4px;
+      display: none;
+    }
+    .validation-message.show {
+      display: block;
+    }
+    input.invalid {
+      border-color: #ef4444;
+    }
+    input.valid {
+      border-color: #22c55e;
+    }
+    .profile-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 12px;
+    }
+    .stat-box {
+      background: rgba(96, 165, 250, 0.1);
+      padding: 12px;
+      border-radius: 8px;
+      text-align: center;
+    }
+    .stat-value {
+      font-size: 24px;
+      font-weight: bold;
+      color: var(--primary);
+    }
+    .stat-label {
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 4px;
+    }
+  </style>
 </head>
 <body>
   <div class="layout">
     <header class="site-header">
       <div class="brand">
         <h1>Campus Radio</h1>
-        <p>DJ</p>
+        <p>DJ Dashboard</p>
       </div>
       <nav class="topnav">
         <a href="index.html">Home</a>
@@ -20,12 +59,30 @@
         <a href="manager.html">Manager</a>
       </nav>
       <div class="actions">
-        <button onclick="alert('DJ: inline action')">Inline onclick</button>
-        <button onclick="toggleThemeInline()">Toggle theme (inline)</button>
+        <button onclick="alert('✓ Inline onclick event fired!')">Inline Event Demo</button>
+        <button onclick="toggleThemeInline()">Toggle Theme (Inline)</button>
       </div>
     </header>
 
     <main class="content">
+      <section class="card" id="profile-card" style="grid-column: 1 / -1;">
+        <h2>DJ Profile Stats (Object Properties Demo)</h2>
+        <div class="profile-stats">
+          <div class="stat-box">
+            <div class="stat-value" id="totalTracks">0</div>
+            <div class="stat-label">Tracks in Queue</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-value" id="totalDuration">00:00</div>
+            <div class="stat-label">Total Duration</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-value" id="gigsCount">0</div>
+            <div class="stat-label">Completed Gigs</div>
+          </div>
+        </div>
+      </section>
+
       <section class="card" id="select">
         <h2>Show and Slot</h2>
         <form>
@@ -53,12 +110,15 @@
       </section>
 
       <section class="card" id="quick">
-        <h2>New Track</h2>
+        <h2>New Track (Form Validation Demo)</h2>
         <form>
           <div class="grid">
             <div class="row">
-              <label for="title">Title</label>
-              <input id="title" name="title" type="text" required>
+              <label for="title">Title *</label>
+              <div style="width: 100%;">
+                <input id="title" name="title" type="text" required>
+                <div class="validation-message" id="title-error"></div>
+              </div>
             </div>
             <div class="row">
               <label for="artist">Artist</label>
@@ -69,8 +129,11 @@
               <input id="bpm" name="bpm" type="number" min="0" step="1">
             </div>
             <div class="row">
-              <label for="duration">Duration (mm:ss)</label>
-              <input id="duration" name="duration" type="text" placeholder="03:45" required>
+              <label for="duration">Duration (mm:ss) *</label>
+              <div style="width: 100%;">
+                <input id="duration" name="duration" type="text" placeholder="03:45" required>
+                <div class="validation-message" id="duration-error"></div>
+              </div>
             </div>
           </div>
           <div class="row">
@@ -81,8 +144,11 @@
       </section>
 
       <section class="card">
-        <h2>Search in Queue</h2>
-        <input id="q" type="search" placeholder="Filter by text">
+        <h2>Search in Queue (Keydown Event Demo)</h2>
+        <input id="q" type="search" placeholder="Type to filter tracks...">
+        <p style="font-size: 14px; color: var(--muted); margin-top: 8px;" id="search-hint">
+          Try typing a track name or artist
+        </p>
       </section>
 
       <section class="card" id="queue">
@@ -102,20 +168,23 @@
 
       <section class="card">
         <h2>Now Playing</h2>
-        <p id="nowPlaying"></p>
+        <p id="nowPlaying" style="font-size: 16px; font-weight: 600; color: var(--primary);">
+          No track playing
+        </p>
       </section>
 
       <section class="card">
-        <h2>Status</h2>
-        <p id="status" aria-live="polite"></p>
+        <h2>Status (DOM Manipulation Demo)</h2>
+        <p id="status" aria-live="polite" style="min-height: 24px; font-style: italic;"></p>
       </section>
     </main>
 
     <footer class="site-footer">
-      <small>Campus Radio</small>
+      <small>Campus Radio - DJ Dashboard</small>
     </footer>
   </div>
 
   <script type="module" src="assets/js/dj.js"></script>
+  <script src="assets/js/index.js"></script>
 </body>
 </html>
