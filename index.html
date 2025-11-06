@@ -45,6 +45,15 @@
     .btn:hover {
       opacity: 0.9;
     }
+    .btn:disabled,
+    .btn[style*="pointer-events: none"] {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+    #continueStatus {
+      margin: 8px 0;
+      min-height: 24px;
+    }
   </style>
 </head>
 <body>
@@ -88,7 +97,9 @@
         <h2>Continue where you left off</h2>
         <p id="continueStatus">No recent activity yet</p>
         <div class="actions">
-          <a id="continueLink" href="dj.html" class="btn">Go to last page</a>
+          <a id="continueLink" href="#" class="btn">
+            <span id="continueLinkText">Go to last page</span>
+          </a>
         </div>
       </section>
     </main>
