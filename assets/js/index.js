@@ -10,7 +10,7 @@
     if (f.includes('dj')) return 'DJ';
     if (f.includes('producer')) return 'Producer';
     if (f.includes('manager')) return 'Manager';
-    return 'Home';
+    return null; // Return null for index.html or unknown files
   }
 
   function updateActiveNav() {
@@ -25,9 +25,13 @@
 
   function saveLast(file) {
     try {
-      localStorage.setItem('lastRole', roleFromFile(file));
-      localStorage.setItem('lastRoleFile', file);
-      localStorage.setItem('lastVisitedAt', String(Date.now()));
+      const role = roleFromFile(file);
+      // Only save if it's NOT index.html (role will be null for index)
+      if (role) {
+        localStorage.setItem('lastRole', role);
+        localStorage.setItem('lastRoleFile', file);
+        localStorage.setItem('lastVisitedAt', String(Date.now()));
+      }
     } catch {}
   }
 
@@ -54,7 +58,11 @@
 
     try {
       const current = (location.pathname.split('/').pop() || 'index.html');
-      if (current.toLowerCase() !== 'index.html') saveLast(current);
+      const currentLower = current.toLowerCase();
+      // Only save if it's NOT index.html
+      if (currentLower !== 'index.html') {
+        saveLast(current);
+      }
     } catch {}
 
     try {
@@ -83,13 +91,46 @@
       if (isIndex) {
         const status = $('#continueStatus');
         const link = $('#continueLink');
+        const linkText = $('#continueLinkText');
         const f = localStorage.getItem('lastRoleFile');
+        const role = localStorage.getItem('lastRole');
         const t = Number(localStorage.getItem('lastVisitedAt') || 0);
-        if (f) {
-          if (link) link.setAttribute('href', f);
-          if (status) status.textContent = 'Last visit ' + relTime(t);
+        
+        // Check if we have a valid last page (not index.html)
+        if (f && role && f.toLowerCase() !== 'index.html') {
+          if (link) {
+            link.setAttribute('href', f);
+            link.style.display = 'inline-block';
+            link.style.opacity = '1';
+            link.style.cursor = 'pointer';
+            link.style.pointerEvents = 'auto';
+          }
+          if (linkText) {
+            linkText.textContent = `Continue to ${role}`;
+          }
+          if (status) {
+            status.textContent = `Last visit to ${role}: ${relTime(t)}`;
+            status.style.color = 'var(--text)';
+          }
         } else {
-          if (status) status.textContent = 'No recent activity yet';
+          // No valid last page - disable button
+          if (link) {
+            link.setAttribute('href', '#');
+            link.style.opacity = '0.5';
+            link.style.cursor = 'not-allowed';
+            link.style.pointerEvents = 'none';
+            // Prevent click event
+            link.addEventListener('click', (e) => {
+              e.preventDefault();
+            });
+          }
+          if (linkText) {
+            linkText.textContent = 'No recent page';
+          }
+          if (status) {
+            status.textContent = 'No recent activity yet. Visit DJ, Producer, or Manager to get started!';
+            status.style.color = 'var(--muted)';
+          }
         }
       }
     } catch {}
