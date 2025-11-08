@@ -1,0 +1,209 @@
+/* basic theme colors */
+:root {
+    --bg: #0b1220;
+    --surface: #111827;
+    --surface-2: #151b24;
+    --text: #e5e7eb;
+    --muted: #94a3b8;
+    --brand: #60a5fa;
+    --brand-ink: #0b1220;
+    --danger: #ef6a6a;
+    --accent-100: #23314d;
+
+    --shadow-soft: 0 6px 16px rgba(0,0,0,.25);
+    --shadow-strong: 0 10px 24px rgba(0,0,0,.35);
+    --radius: 12px;
+}
+
+body.light {
+    --bg: #f6f8fb;
+    --surface: #ffffff;
+    --surface-2: #f2f4f8;
+    --text: #0f172a;
+    --muted: #475569;
+    --brand: #0ea5e9;
+    --brand-ink: #0f172a;
+    --accent-100: #e8eef9;
+
+    --shadow-soft: 0 10px 30px rgba(2,6,23,.08);
+    --shadow-strong: 0 20px 40px rgba(2,6,23,.12);
+}
+
+/* reset and body */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    display: flex;
+    min-height: 100vh;
+}
+
+/* links */
+a {
+    color: var(--text);
+    text-decoration: none;
+}
+a:hover {
+    opacity: 0.9;
+}
+
+/* sidebar */
+#sidebar {
+    background: var(--surface);
+    border-right: 1px solid var(--border, #2a2f3a);
+    width: 200px;
+    transition: width 0.3s;
+    overflow: hidden;
+    box-shadow: var(--shadow-soft);
+    padding-top: 10px;
+}
+
+#sidebar.collapsed {
+    width: 50px;
+}
+
+#sidebar #toggle-btn {
+    background: var(--surface-2);
+    border: 1px solid var(--border, #2a2f3a);
+    padding: 10px;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+#sidebar ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+#sidebar ul li {
+    padding: 8px 10px;
+}
+
+#sidebar ul li a {
+    display: block;
+    color: var(--text);
+    border-radius: var(--radius);
+    padding: 6px 8px;
+}
+
+#sidebar ul li a:hover {
+    background-color: var(--brand);
+    color: var(--brand-ink);
+}
+
+/* main content */
+main {
+    flex: 1;
+    padding: 20px;
+    background: var(--surface-2);
+}
+
+/* content cards */
+.content {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.card {
+    background: var(--surface);
+    border: 1px solid var(--border, #2a2f3a);
+    border-radius: var(--radius);
+    padding: 20px;
+    box-shadow: var(--shadow-soft);
+    margin-bottom: 20px;
+}
+
+.card h2 {
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.card p {
+    margin-bottom: 10px;
+}
+
+/* forms */
+form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    background: var(--surface);
+    padding: 15px;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-soft);
+}
+
+label {
+    margin-top: 10px;
+    font-weight: 500;
+}
+
+input, select, button {
+    font: inherit;
+    padding: 8px;
+    border-radius: 8px;
+    border: 1px solid var(--border, #2a2f3a);
+    background: var(--surface-2);
+    color: var(--text);
+}
+
+input::placeholder {
+    color: var(--muted);
+}
+
+input[type="submit"], button {
+    cursor: pointer;
+    background: var(--brand);
+    color: var(--brand-ink);
+    border: none;
+    margin-top: 15px;
+}
+
+input[type="submit"]:hover, button:hover {
+    filter: brightness(0.95);
+}
+
+/* tables */
+table {
+    border-collapse: collapse;
+    width: 100%;
+    background: var(--surface);
+    border: 1px solid var(--border, #2a2f3a);
+    border-radius: var(--radius);
+}
+
+th, td {
+    padding: 8px;
+    border-bottom: 1px solid var(--border, #2a2f3a);
+}
+
+th {
+    background: var(--surface-2);
+    font-weight: 600;
+    color: var(--muted);
+}
+
+td {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.half-container {
+    display: flex;
+    gap: 20px; 
+    flex-wrap: wrap; 
+}
+
+.half-container > .card {
+    flex: 1 1 45%; 
+    min-width: 300px;
+}
+
