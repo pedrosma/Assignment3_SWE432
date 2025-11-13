@@ -1,4 +1,4 @@
-//import module
+//import module user
 import { User } from './models/user.js';
 
 //variables

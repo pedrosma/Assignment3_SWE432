@@ -1,3 +1,4 @@
+//module user, exported here
 export class User {
     constructor(name, genre) {
         this.name = name;
